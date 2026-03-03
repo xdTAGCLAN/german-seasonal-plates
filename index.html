@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>match & zoom · image selector + table</title>
+    <!-- stylesheet linked externally (separate .css file) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <h1>image match <span class="light">01–12</span></h1>
+
+        <!-- tab navigation -->
+        <div class="tab-bar">
+            <button id="tabSelectorBtn" class="tab-btn active">selector</button>
+            <button id="tabTableBtn" class="tab-btn">available images</button>
+        </div>
+
+        <!-- selector panel (tab 1) -->
+        <div id="selectorPanel" class="tab-panel">
+            <div class="selector-panel">
+                <div class="select-group">
+                    <label for="first">first</label>
+                    <select id="first" class="value-select" aria-label="first value"></select>
+                </div>
+                <div class="select-group">
+                    <label for="second">second</label>
+                    <select id="second" class="value-select" aria-label="second value"></select>
+                </div>
+                <button id="showBtn" class="primary-btn">show image</button>
+            </div>
+
+            <!-- result area: image or message -->
+            <div id="resultBox" class="result-box">
+                <p id="resultMessage" class="result-message">← pick two numbers</p>
+                <div id="imageContainer" class="image-container hidden">
+                    <img id="resultImage" src="" alt="matched image" loading="lazy">
+                </div>
+            </div>
+        </div>
+
+        <!-- table panel (tab 2) -->
+        <div id="tablePanel" class="tab-panel hidden">
+            <h2 class="panel-title">📋 all combinations (green = available)</h2>
+            <div id="tableContainer" class="table-container">
+                <!-- dynamic table will be injected here -->
+                <p class="loading-message">scanning images folder...</p>
+            </div>
+            <p class="table-footnote">images found in <code>images/</code> folder · named as <kbd>01-02.jpg</kbd></p>
+        </div>
+    </main>
+
+    <!-- modal overlay for big image + zoom/drag -->
+    <div id="modalOverlay" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="closeModalBtn" class="close-btn" aria-label="close modal">✕</button>
+            <div id="modalImageWrapper" class="modal-image-wrapper">
+                <img id="modalImage" src="" alt="enlarged view">
+            </div>
+            <div class="modal-hint">scroll to zoom · drag to pan</div>
+        </div>
+    </div>
+
+    <!-- custom alert popup (no image available) -->
+    <div id="customAlert" class="custom-alert hidden">
+        <div class="alert-content">
+            <span class="alert-icon">📭</span>
+            <p id="alertMessage">no available image for this combination</p>
+            <button id="alertOkBtn" class="alert-btn">OK</button>
+        </div>
+    </div>
+
+    <!-- external script (separate .js file) -->
+    <script src="script.js"></script>
+</body>
+</html>
